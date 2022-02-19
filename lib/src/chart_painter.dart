@@ -139,8 +139,10 @@ class ChartPainter extends CustomPainter {
       }
 
       for (final a in candle.annotations) {
-        final top = Offset(x, params.fitPrice(high ?? open));
-        final bottom = Offset(x, params.fitPrice(low ?? close));
+        final t = high ?? (close < open ? open : close);
+        final b = low ?? (close > open ? open : close);
+        final top = Offset(x, params.fitPrice(t));
+        final bottom = Offset(x, params.fitPrice(b));
         a.paint(canvas, top, bottom);
       }
     }
