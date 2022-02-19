@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'candle_data.dart';
 import 'painter_params.dart';
@@ -137,6 +136,12 @@ class ChartPainter extends CustomPainter {
             ..strokeWidth = thinWidth
             ..color = color,
         );
+      }
+
+      for (final a in candle.annotations) {
+        final top = Offset(x, params.fitPrice(high ?? open));
+        final bottom = Offset(x, params.fitPrice(low ?? close));
+        a.paint(canvas, top, bottom);
       }
     }
     // Draw volume bar

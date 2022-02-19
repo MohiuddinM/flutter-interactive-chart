@@ -1,3 +1,5 @@
+import 'annotation.dart';
+
 class CandleData {
   /// The timestamp of this data point, in milliseconds since epoch.
   final int timestamp;
@@ -36,8 +38,11 @@ class CandleData {
   /// are changed. Otherwise the UI might not be updated.
   List<double?> trends;
 
+  final List<Annotation> annotations;
+
   CandleData({
     required this.timestamp,
+    this.annotations = const [],
     required this.open,
     required this.close,
     required this.volume,
